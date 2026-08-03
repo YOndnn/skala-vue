@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, watch, watchEffect } from 'vue'
 
 const weatherList = ref([
   { id: 'city_01', name: '서울', temp: 28, status: '맑음' },
@@ -13,6 +13,11 @@ const searchText = ref('')
 // 4. 상태바 메시지
 const statusMessage = ref('카드를 클릭하거나 검색해 보세요.')
 
+// [실습] 2. 실시간 검색 필터링 (computed): 검색어가 도시 이름에 포함된 항목만 노출
+const filteredWeatherList = computed(() =>
+  weatherList.value.filter((item) => item.name.includes(searchText.value)),
+)
+
 const selectCity = (cityName) => {
   statusMessage.value = `${cityName}이 선택되었습니다.`
 }
@@ -20,6 +25,16 @@ const selectCity = (cityName) => {
 const showDetail = (cityName, status) => {
   window.alert(`${cityName}의 현재 날씨는 [${status}] 상태입니다.`)
 }
+
+// [실습] 3. 선택 도시 모니터링 (watch): 상태바 문구가 바뀔 때마다 로그 기록
+watch(statusMessage, (newValue) => {
+  console.log(`👁️‍🗨️ [watch 감지] 상태 바 문구가 업데이트되었습니다 -> "${newValue}"`)
+})
+
+// [실습] 3. 검색 자동화 (watchEffect): 최초 실행 + 검색어 변경마다 백엔드 통신 시뮬레이션 로그 출력
+watchEffect(() => {
+  console.log(`🤖 [watchEffect 자동 호출] 현재 검색어 '${searchText.value}'에 매칭되는 API 데이터를 필터링합니다`)
+})
 </script>
 
 <template>
@@ -43,7 +58,7 @@ const showDetail = (cityName, status) => {
       <h3>📊 지역별 날씨 현황</h3>
 
       <div
-        v-for="item in weatherList"
+        v-for="item in filteredWeatherList"
         :key="item.id"
         class="card"
         @click="selectCity(item.name)"
