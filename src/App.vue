@@ -1,9 +1,9 @@
 <script setup>
-import WeatherExercise from './components/practices/basic/WeatherExercise.vue'
+import RefExmpl from './components/practices/basic/RefExmpl.vue'
 </script>
 
 <template>
   <div style="padding: 20px">
-    <WeatherExercise />
+    <RefExmpl />
   </div>
 </template>
