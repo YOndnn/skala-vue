@@ -14,7 +14,7 @@ const selectCard = () => {
   emit('select-card', `${props.item.name}이 선택되었습니다.`)
 }
 
-// 상세보기는 카드 클릭까지 같이 터지지 않도록 @click.stop으로 전파를 끊는다
+// 자세히 는 카드 클릭까지 같이 터지지 않도록 @click.stop으로 전파를 끊는다
 const clickDetail = () => {
   emit('click-detail', props.item)
 }
@@ -26,11 +26,17 @@ const clickDetail = () => {
       <p class="card-title">{{ item.name }} ({{ item.status }})</p>
       <p class="card-temp">현재 기온: {{ item.temp }}°C</p>
 
-      <span v-if="item.temp >= 25" class="badge badge-hot">🔥 더움 (25도 이상)</span>
-      <span v-else class="badge badge-cool">❄️ 선선함 (25도 미만)</span>
+      <span v-if="item.temp >= 28" class="badge badge-hot">🔥 더움 (28도 이상)</span>
+      <span v-else-if="item.temp >= 25" class="badge badge-warm">🌤 따뜻함 (25~28도)</span>
+      <span v-else class="badge badge-cool">🌬️ 선선함 (25도 미만)</span>
     </div>
 
-    <button class="detail-btn" @click.stop="clickDetail">상세보기</button>
+
+    <div class="detail-area">
+      <slot name="detail-button">
+        <button class="detail-btn" @click.stop="clickDetail">자세히</button>
+      </slot>
+    </div>
   </div>
 </template>
 
@@ -77,6 +83,10 @@ const clickDetail = () => {
 
 .badge-cool {
   background-color: #2f7fe8;
+}
+
+.badge-warm {
+  background-color: #f9c347;
 }
 
 .detail-btn {

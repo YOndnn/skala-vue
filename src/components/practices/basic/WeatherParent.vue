@@ -28,9 +28,18 @@ const selectCard = (message) => {
   selectedCityInfo.value = message
 }
 
-// WeatherCard의 상세보기 버튼이 부른 팝업 함수
+// 팝업에 도시 보여줌
+const detailItem = ref(null)
 const clickDetail = (item) => {
-  window.alert(`${item.name}의 현재 날씨는 [${item.status}] 상태입니다.`)
+  detailItem.value = item
+}
+const closeDetail = () => {
+  detailItem.value = null
+}
+const tempStatus = (temp) => {
+  if (temp >= 28) return 'temp-hot'
+  else if (temp >= 25) return 'temp-warm'
+  else return 'temp-cool'
 }
 
 // 상태바 문구가 바뀔 때마다 로그 기록
@@ -69,6 +78,15 @@ watchEffect(() => {
     </WeatherDashboardCard>
 
     <p class="status-bar">{{ selectedCityInfo }}</p>
+
+    <!-- 상세보기 팝업: detailItem이 null이면 안 보인다 -->
+    <div v-if="detailItem" class="popup">
+      <p>
+        {{ detailItem.name }}의 현재 날씨는 <strong>{{ detailItem.status }}</strong> 상태이고,
+        기온은 <span :class="tempStatus(detailItem.temp)">{{ detailItem.temp }}°C</span> 입니다.
+      </p>
+      <button @click="closeDetail">닫기</button>
+    </div>
   </div>
 </template>
 
@@ -85,5 +103,33 @@ watchEffect(() => {
   border-radius: 6px;
   background-color: #eaf7ef;
   color: #2b7a4b;
+}
+
+.popup {
+  border: 1px solid #c7d2e0;
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 10px;
+  background-color: #fff;
+}
+
+/* base.css의 * { font-weight: normal }이 strong까지 풀어버려서 다시 지정한다 */
+.popup strong {
+  font-weight: bold;
+}
+
+.temp-hot {
+  color: #e8492f;
+  font-weight: bold;
+}
+
+.temp-warm {
+  color: #e8a52f;
+  font-weight: bold;
+}
+
+.temp-cool {
+  color: #2f7fe8;
+  font-weight: bold;
 }
 </style>

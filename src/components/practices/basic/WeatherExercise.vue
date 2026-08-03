@@ -33,7 +33,9 @@ watch(statusMessage, (newValue) => {
 
 // [실습] 3. 검색 자동화 (watchEffect): 최초 실행 + 검색어 변경마다 백엔드 통신 시뮬레이션 로그 출력
 watchEffect(() => {
-  console.log(`🤖 [watchEffect 자동 호출] 현재 검색어 '${searchText.value}'에 매칭되는 API 데이터를 필터링합니다`)
+  console.log(
+    `🤖 [watchEffect 자동 호출] 현재 검색어 '${searchText.value}'에 매칭되는 API 데이터를 필터링합니다`,
+  )
 })
 </script>
 
@@ -67,8 +69,9 @@ watchEffect(() => {
           <p class="card-title">{{ item.name }} ({{ item.status }})</p>
           <p class="card-temp">현재 기온: {{ item.temp }}°C</p>
 
-          <span v-if="item.temp >= 25" class="badge badge-hot">🔥 더움 (25도 이상)</span>
-          <span v-else class="badge badge-cool">❄️ 선선함 (25도 미만)</span>
+          <span v-if="item.temp >= 28" class="badge badge-hot">🔥 더움 (28도 이상)</span>
+          <span v-else-if="item.temp >= 25" class="badge badge-warm">🌤 따뜻함 (25~28도)</span>
+          <span v-else class="badge badge-cool">🌬️ 선선함 (25도 미만)</span>
         </div>
 
         <button class="detail-btn" @click.stop="showDetail(item.name, item.status)">
@@ -155,6 +158,10 @@ watchEffect(() => {
 
 .badge-cool {
   background-color: #2f7fe8;
+}
+
+.badge-warm {
+  background-color: #f9c347;
 }
 
 .detail-btn {
