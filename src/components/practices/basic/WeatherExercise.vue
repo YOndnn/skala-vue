@@ -39,7 +39,7 @@ watchEffect(() => {
 
 <template>
   <div class="practice-section">
-    <h2>🌤 과제 1: 날씨 (Mockup)</h2>
+    <h2>🌤 과제 2: 날씨 (Mockup)</h2>
 
     <!-- ===== 도시 검색 ===== -->
     <section class="panel">
