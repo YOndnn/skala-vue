@@ -1,153 +1,155 @@
 <script setup>
-// ===== 2. Vue 문법 =====
-import SampleOne from './components/practices/basic/SampleOne.vue'
-import SampleTwo from './components/practices/basic/SampleTwo.vue'
-import VHtml from './components/practices/basic/VHtml.vue'
-import VueDirective from './components/practices/basic/VueDirective.vue'
-import VText from './components/practices/basic/VText.vue'
-import VBind from './components/practices/basic/VBind.vue'
-import StyleBind from './components/practices/basic/StyleBind.vue'
-import VBindShortHand from './components/practices/basic/VBindShortHand.vue'
-import VIfElseSample from './components/practices/basic/VIfElseSample.vue'
-import VShowSample from './components/practices/basic/VShowSample.vue'
-import VForSample from './components/practices/basic/VForSample.vue'
-import VPreSample from './components/practices/basic/VPreSample.vue'
-import MemoCloak from './components/practices/basic/MemoCloak.vue'
-import VOnHandler from './components/practices/basic/VOnHandler.vue'
-import VModifier from './components/practices/basic/VModifier.vue'
-import VueStyle from './components/practices/basic/VueStyle.vue'
-
-// ===== 3. Composition API =====
-import RefExmpl from './components/practices/basic/RefExmpl.vue'
-import ReactiveExmpl from './components/practices/basic/ReactiveExmpl.vue'
-import ComputedExmpl from './components/practices/basic/ComputedExmpl.vue'
-import WatchExmpl from './components/practices/basic/WatchExmpl.vue'
-import WatchMultiExmpl from './components/practices/basic/WatchMultiExmpl.vue'
-import WatchDeepExmpl from './components/practices/basic/WatchDeepExmpl.vue'
-import WatchReactiveExmpl from './components/practices/basic/WatchReactiveExmpl.vue'
-import WatchEffectExmpl from './components/practices/basic/WatchEffectExmpl.vue'
-import WeatherExercise from './components/practices/basic/WeatherExercise.vue'
-
-// ===== 4. Vue Component =====
-import LifeCycle from './components/practices/basic/LifeCycle.vue'
-import PropsEmitsParent from './components/practices/basic/PropsEmitsParent.vue'
-import SlotDefaultParent from './components/practices/basic/SlotDefaultParent.vue'
-import SlotNamedParent from './components/practices/basic/SlotNamedParent.vue'
-import SlotScopedParent from './components/practices/basic/SlotScopedParent.vue'
-import WeatherParent from './components/practices/basic/WeatherParent.vue'
-
-// 교재 Code Challenge 순서대로 정리
-const groups = [
-  {
-    title: '2. Vue 문법 · 학습환경 구성 (p.50)',
-    items: [
-      { label: '반응성 데이터 (Reactivity)', comp: SampleOne },
-      { label: 'JavaScript in Text Interpolation', comp: SampleTwo },
-    ],
-  },
-  {
-    title: '2. Vue 문법 · Vue Directive (p.71)',
-    items: [
-      { label: 'v-html', comp: VHtml },
-      { label: 'v-html (XSS 위협)', comp: VueDirective },
-      { label: 'v-text', comp: VText },
-      { label: 'v-bind (Class Binding)', comp: VBind },
-      { label: 'v-bind (Style Binding)', comp: StyleBind },
-      { label: 'v-bind (Same-name Shorthand)', comp: VBindShortHand },
-      { label: 'v-if / v-else-if / v-else', comp: VIfElseSample },
-      { label: 'v-show', comp: VShowSample },
-      { label: 'v-for', comp: VForSample },
-      { label: 'v-once', comp: VPreSample },
-      { label: 'v-cloak / v-memo (+ $event, v-model 포함)', comp: MemoCloak },
-    ],
-  },
-  {
-    title: '2. Vue 문법 · Vue Event Handling (p.83)',
-    items: [
-      { label: 'v-on Event Handler', comp: VOnHandler },
-      { label: 'Event Modifier (이벤트 수식어)', comp: VModifier },
-    ],
-  },
-  {
-    title: '2. Vue 문법 · Vue Form Handling & Style (p.90)',
-    items: [{ label: 'Vue Style', comp: VueStyle }],
-  },
-  {
-    title: '3. Composition API · Reactive State (p.100)',
-    items: [
-      { label: 'ref()', comp: RefExmpl },
-      { label: 'reactive()', comp: ReactiveExmpl },
-    ],
-  },
-  {
-    title: '3. Composition API · Computed & Watchers (p.118)',
-    items: [
-      { label: 'computed()', comp: ComputedExmpl },
-      { label: 'watch()', comp: WatchExmpl },
-      { label: 'watch() Multi-Source', comp: WatchMultiExmpl },
-      { label: 'watch() Deep', comp: WatchDeepExmpl },
-      { label: 'watch() reactive 데이터', comp: WatchReactiveExmpl },
-      { label: 'watchEffect()', comp: WatchEffectExmpl },
-    ],
-  },
-  {
-    title: '3. Composition API · [실습] 과제 (p.119)',
-    items: [{ label: '날씨 대시보드 동적 기능 구현', comp: WeatherExercise }],
-  },
-  {
-    title: '4. Vue Component · Component Lifecycle (p.129)',
-    items: [{ label: 'Lifecycle Hook', comp: LifeCycle }],
-  },
-  {
-    title: '4. Vue Component · Props & Emits (p.143)',
-    items: [{ label: 'Props & Emits', comp: PropsEmitsParent }],
-  },
-  {
-    title: '4. Vue Component · Component Slot (p.150)',
-    items: [
-      { label: 'Default Slot', comp: SlotDefaultParent },
-      { label: 'Named Slot', comp: SlotNamedParent },
-      { label: 'Scoped Slot', comp: SlotScopedParent },
-    ],
-  },
-  {
-    title: '4. Vue Component · [실습] 과제 (p.151)',
-    items: [{ label: '날씨 대시보드 컴포넌트 구조화', comp: WeatherParent }],
-  },
-]
-
-// 1번부터 쭉 번호를 매긴 평평한 목록
-const list = groups.flatMap((g) => g.items.map((item) => ({ ...item, group: g.title })))
+// 라우터가 화면을 갈아끼우므로 App.vue는 뼈대(상단 바 + 사이드바 + 본문)만 갖는다.
+// 날씨 과제의 화면 이동 링크와 단위 변경 버튼은 WeatherHeader.vue가 따로 갖는다.
+import { practiceList, exerciseList, assignmentList, indexOf } from '@/data/practices'
 </script>
 
 <template>
-  <div class="page">
-    <h1>Vue Code Challenge 전체 목록</h1>
+  <div class="layout">
+    <header class="topbar">
+      <span class="brand">skala-vue</span>
+    </header>
 
-    <section v-for="(item, i) in list" :key="item.label" class="item">
-      <h2>{{ i + 1 }}. {{ item.label }}</h2>
-      <p class="group">{{ item.group }}</p>
-      <component :is="item.comp" />
-    </section>
+    <div class="body">
+      <!-- 왼쪽 목록: 과제 칸과 실습 칸으로 나눠 둔다 -->
+      <aside class="sidebar">
+        <nav class="section">
+          <p class="section__title">과제</p>
+
+          <RouterLink to="/" class="link">5. 라우터 활용 · 날씨 대시보드</RouterLink>
+
+          <RouterLink
+            v-for="item in assignmentList"
+            :key="item.label"
+            :to="`/practices/${indexOf(item)}`"
+            class="link"
+          >
+            {{ item.group.slice(0, 1) }}. {{ item.label }}
+          </RouterLink>
+        </nav>
+
+        <nav class="section">
+          <p class="section__title">실습</p>
+
+          <RouterLink
+            v-for="item in exerciseList"
+            :key="item.label"
+            :to="`/practices/${indexOf(item)}`"
+            class="link"
+          >
+            {{ indexOf(item) + 1 }}. {{ item.label }}
+          </RouterLink>
+
+          <RouterLink to="/practices" class="link link--all">
+            전체 {{ practiceList.length }}개 한 페이지로 보기
+          </RouterLink>
+        </nav>
+      </aside>
+
+      <!-- 주소와 맞는 화면이 여기에 들어온다 -->
+      <main class="main">
+        <RouterView />
+      </main>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.page {
-  max-width: 900px;
-  margin: 0 auto;
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  border-bottom: 1px solid #dbe4ef;
+}
+
+.brand {
+  font-weight: bold;
+  color: #42b883;
+}
+
+.body {
+  display: flex;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.sidebar {
+  flex-shrink: 0;
+  width: 260px;
+  padding: 16px 12px;
+  border-right: 1px solid #dbe4ef;
+  /* 본문을 내려도 목록은 자리에 남아 있게 한다 */
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.section + .section {
+  margin-top: 20px;
+}
+
+.section__title {
+  margin: 0 0 8px;
+  padding-left: 8px;
+  color: #888;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+.link {
+  display: block;
+  padding: 6px 8px;
+  border-radius: 4px;
+  color: #555;
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.link:hover {
+  background-color: #f1f5fa;
+}
+
+.link.router-link-exact-active {
+  background-color: #eaf7ef;
+  color: #2b7a4b;
+  font-weight: bold;
+}
+
+.link--all {
+  margin-top: 8px;
+  color: #888;
+  font-size: 12px;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
   padding: 20px;
 }
-.item {
-  padding: 20px 0 30px;
-  border-bottom: 1px solid #eee;
-}
-.item h2 {
-  margin: 0;
-}
-.group {
-  margin: 4px 0 16px;
-  color: #888;
-  font-size: 13px;
+
+/* 화면이 좁으면 목록을 위로 올리고 가로폭을 다 쓴다 */
+@media (max-width: 720px) {
+  .body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+    max-height: none;
+    border-right: none;
+    border-bottom: 1px solid #dbe4ef;
+  }
 }
 </style>

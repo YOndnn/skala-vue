@@ -37,3 +37,10 @@ __screenshots__/
 
 # Vite
 *.timestamp-*-*.mjs
+
+# 환경 변수 (API 키)
+.env
+.env.local
+
+# Claude Code 로컬 설정
+.claude/

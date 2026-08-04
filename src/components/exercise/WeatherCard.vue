@@ -1,10 +1,23 @@
 <script setup>
+import { computed } from 'vue'
+import { useConfigStore } from '@/stores/configStore.js'
+
 // 상위의 반복문에서 풀려나온 개별 도시 데이터를 주입받는다
 const props = defineProps({
   item: {
     type: Object,
     required: true,
   },
+})
+
+const configStore = useConfigStore()
+
+const displayTemp = computed(() => {
+  const rawTemp = props.item.temp // 기본 원본 데이터는 섭씨 숫자
+  if (configStore.unit === 'fahrenheit') {
+    return Math.round((rawTemp * 9) / 5 + 32) // 화씨 변환 연산
+  }
+  return rawTemp // 'celsius'일 때는 원본 그대로 반환
 })
 
 const emit = defineEmits(['select-card', 'click-detail'])
@@ -24,7 +37,7 @@ const clickDetail = () => {
   <div class="card" @click="selectCard">
     <div class="card-body">
       <p class="card-title">{{ item.name }} ({{ item.status }})</p>
-      <p class="card-temp">현재 기온: {{ item.temp }}°C</p>
+      <p class="card-temp">현재 기온: {{ displayTemp }}{{ configStore.unitSymbol }}</p>
 
       <span v-if="item.temp >= 28" class="badge badge-hot">🔥 더움 (28도 이상)</span>
       <span v-else-if="item.temp >= 25" class="badge badge-warm">🌤 따뜻함 (25~28도)</span>

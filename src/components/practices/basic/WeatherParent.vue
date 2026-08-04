@@ -79,7 +79,7 @@ watchEffect(() => {
 
     <p class="status-bar">{{ selectedCityInfo }}</p>
 
-    <!-- 상세보기 팝업: detailItem이 null이면 안 보인다 -->
+    <!-- 자세히 팝업: detailItem이 null이면 안 보인다 -->
     <div v-if="detailItem" class="popup">
       <p>
         {{ detailItem.name }}의 현재 날씨는 <strong>{{ detailItem.status }}</strong> 상태이고,
