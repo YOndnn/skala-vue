@@ -87,7 +87,7 @@ watchEffect(() => {
 
 <style scoped>
 .practice-section {
-  max-width: 420px;
+  max-width: 100%;
   font-size: 14px;
 }
 

@@ -69,8 +69,12 @@ watch(selectedCityInfo, (newValue) => {
     <WeatherDashboardCard>
       <h3>📊 지역별 날씨 현황</h3>
 
-      <p v-if="isLoading" class="empty">불러오는 중...</p>
-      <p v-else-if="errorMessage" class="error">{{ errorMessage }}</p>
+      <!-- 불러오는 동안 카드 모양 뼈대를 보여준다 -->
+      <el-skeleton v-if="isLoading" :rows="3" animated />
+
+      <el-alert v-else-if="errorMessage" type="error" :closable="false" show-icon>
+        {{ errorMessage }}
+      </el-alert>
 
       <template v-else>
         <WeatherCard
@@ -81,17 +85,21 @@ watch(selectedCityInfo, (newValue) => {
           @click-detail="clickDetail"
         />
 
-        <p v-if="filteredWeatherList.length === 0" class="empty">검색 결과가 없습니다.</p>
+        <el-empty
+          v-if="filteredWeatherList.length === 0"
+          description="검색 결과가 없습니다."
+          :image-size="80"
+        />
       </template>
     </WeatherDashboardCard>
 
-    <p class="status-bar">{{ selectedCityInfo }}</p>
+    <el-alert type="success" :closable="false" show-icon>{{ selectedCityInfo }}</el-alert>
   </div>
 </template>
 
 <style scoped>
 .dashboard {
-  max-width: 720px;
+  max-width: 900px;
   font-size: 14px;
 }
 

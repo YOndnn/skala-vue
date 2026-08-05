@@ -92,7 +92,7 @@ watchEffect(() => {
 
 <style scoped>
 .dashboard {
-  max-width: 420px;
+  max-width: 100%;
   font-size: 14px;
 }
 

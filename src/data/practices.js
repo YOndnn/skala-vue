@@ -4,6 +4,9 @@
 // ===== 2. Vue 문법 =====
 import SampleOne from '@/components/practices/basic/SampleOne.vue'
 import SampleTwo from '@/components/practices/basic/SampleTwo.vue'
+import CoreSyntax from '@/components/practices/basic/CoreSyntax.vue'
+import CoreSyntaxTask2 from '@/components/practices/basic/CoreSyntaxTask2.vue'
+import CoreSyntaxTask3 from '@/components/practices/basic/CoreSyntaxTask3.vue'
 import VHtml from '@/components/practices/basic/VHtml.vue'
 import VueDirective from '@/components/practices/basic/VueDirective.vue'
 import VText from '@/components/practices/basic/VText.vue'
@@ -45,6 +48,11 @@ import StoreCounter from '@/components/practices/library/StoreCounter.vue'
 import AxiosWeather from '@/components/practices/library/AxiosWeather.vue'
 import AxiosJson from '@/components/practices/library/AxiosJson.vue'
 
+// ===== 8. UI 라이브러리 =====
+import ElementForm from '@/components/practices/library/ElementForm.vue'
+import ElementProduct from '@/components/practices/library/ElementProduct.vue'
+import ElementFeedback from '@/components/practices/library/ElementFeedback.vue'
+
 // kind: 'exercise'(실습) / 'assignment'(과제)
 export const groups = [
   {
@@ -52,7 +60,7 @@ export const groups = [
     kind: 'exercise',
     items: [
       { label: '반응성 데이터 (Reactivity)', comp: SampleOne },
-      { label: 'JavaScript in Text Interpolation', comp: SampleTwo },
+      { label: 'JavaScript in Text', comp: SampleTwo },
     ],
   },
   {
@@ -64,12 +72,12 @@ export const groups = [
       { label: 'v-text', comp: VText },
       { label: 'v-bind (Class Binding)', comp: VBind },
       { label: 'v-bind (Style Binding)', comp: StyleBind },
-      { label: 'v-bind (Same-name Shorthand)', comp: VBindShortHand },
+      { label: 'v-bind (Shorthand)', comp: VBindShortHand },
       { label: 'v-if / v-else-if / v-else', comp: VIfElseSample },
       { label: 'v-show', comp: VShowSample },
       { label: 'v-for', comp: VForSample },
       { label: 'v-once', comp: VPreSample },
-      { label: 'v-cloak / v-memo (+ $event, v-model 포함)', comp: MemoCloak },
+      { label: 'v-cloak / v-memo', comp: MemoCloak },
     ],
   },
   {
@@ -77,7 +85,7 @@ export const groups = [
     kind: 'exercise',
     items: [
       { label: 'v-on Event Handler', comp: VOnHandler },
-      { label: 'Event Modifier (이벤트 수식어)', comp: VModifier },
+      { label: 'Event Modifier', comp: VModifier },
     ],
   },
   {
@@ -135,6 +143,24 @@ export const groups = [
     items: [
       { label: 'OpenWeatherMap 호출', comp: AxiosWeather },
       { label: 'JSONPlaceholder CRUD', comp: AxiosJson },
+    ],
+  },
+  {
+    title: '8. UI 라이브러리 · Element Plus (p.225~227)',
+    kind: 'exercise',
+    items: [
+      { label: '회원가입 폼', comp: ElementForm },
+      { label: '상품 구매', comp: ElementProduct },
+      { label: '파일 관리', comp: ElementFeedback },
+    ],
+  },
+  {
+    title: 'JavaScript Core Syntax · 실습',
+    kind: 'exercise',
+    items: [
+      { label: 'Core Syntax 미션 1', comp: CoreSyntax },
+      { label: 'Core Syntax 미션 2', comp: CoreSyntaxTask2 },
+      { label: 'Core Syntax 미션 3', comp: CoreSyntaxTask3 },
     ],
   },
   {

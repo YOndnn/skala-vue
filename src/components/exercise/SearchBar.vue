@@ -14,7 +14,10 @@ const emit = defineEmits(['update-query'])
 <template>
   <h3>🔍 도시 검색</h3>
 
-  <!-- 한글 입력 처리를 위해 v-model 대신 :value + @input -->
+  <!--
+    el-input은 한글 조합 중에 input 이벤트를 막아서 한 글자씩 밀린다.
+    그래서 교재대로 기본 input에 :value + @input을 쓰고, 겉모습만 맞춘다.
+  -->
   <input
     class="search-input"
     placeholder="검색할 도시 이름 입력"
@@ -22,20 +25,46 @@ const emit = defineEmits(['update-query'])
     @input="emit('update-query', $event.target.value)"
   />
 
-  <p class="search-echo">검색 중인 도시: {{ query }}</p>
+  <p class="search-echo">
+    검색 중인 도시:
+    <el-tag v-if="query" size="small" type="info">{{ query }}</el-tag>
+    <span v-else class="search-echo__empty">전체</span>
+  </p>
 </template>
 
 <style scoped>
 .search-input {
   width: 100%;
-  padding: 6px 8px;
-  border: 1px solid #c7d2e0;
+  height: 32px;
+  padding: 0 11px;
+  border: 1px solid #dcdfe6;
   border-radius: 4px;
   box-sizing: border-box;
+  font-size: 14px;
+  font-family: inherit;
+  color: #606266;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input:hover {
+  border-color: #c0c4cc;
+}
+
+.search-input:focus {
+  border-color: #409eff;
+}
+
+.search-input::placeholder {
+  color: #a8abb2;
 }
 
 .search-echo {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   color: #666;
+}
+
+.search-echo__empty {
+  color: #aaa;
 }
 </style>

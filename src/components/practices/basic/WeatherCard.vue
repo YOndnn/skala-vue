@@ -20,6 +20,10 @@ const clickDetail = () => {
 }
 </script>
 
+/** 날씨 카드 컴포넌트
+ *  - 상위 컴포넌트에서 반복문으로 풀려나온 개별 도시 데이터를 props로 주입받아 표시한다.
+ *  - 카드 클릭 시 상위 컴포넌트에 안내 문구를 올려보낸다.
+ *  - 자세히 버튼 클릭 시 상위 컴포넌트에 해당 도시 데이터를 올려보낸다
 <template>
   <div class="card" @click="selectCard">
     <div class="card-body">
@@ -76,7 +80,7 @@ const clickDetail = () => {
   font-size: 12px;
   color: white;
 }
-
+/* 배경색은 온도에 따라 다르게 표시 */
 .badge-hot {
   background-color: #e8492f;
 }
@@ -89,6 +93,7 @@ const clickDetail = () => {
   background-color: #f9c347;
 }
 
+/* 자세히 버튼 영역은 카드 오른쪽 끝에 고정 */
 .detail-btn {
   flex-shrink: 0;
   padding: 4px 10px;

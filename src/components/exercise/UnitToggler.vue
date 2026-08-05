@@ -7,9 +7,9 @@ const configStore = useConfigStore()
 <template>
   <div class="unit-toggler">
     <span class="label">온도 단위</span>
-    <button class="unit-btn" @click="configStore.toggleUnit">
+    <el-button class="unit-btn" size="small" round @click="configStore.toggleUnit">
       {{ configStore.unitSymbol }}
-    </button>
+    </el-button>
   </div>
 </template>
 
@@ -27,14 +27,5 @@ const configStore = useConfigStore()
 
 .unit-btn {
   min-width: 44px;
-  padding: 4px 10px;
-  border: 1px solid #c7d2e0;
-  border-radius: 999px;
-  background-color: white;
-  cursor: pointer;
-}
-
-.unit-btn:hover {
-  background-color: #f1f5fa;
 }
 </style>

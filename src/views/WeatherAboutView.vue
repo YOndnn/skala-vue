@@ -33,7 +33,7 @@ const goHome = () => {
 
 <style scoped>
 .about {
-  max-width: 720px;
+  max-width: 900px;
   font-size: 14px;
 }
 

@@ -20,6 +20,13 @@ const displayTemp = computed(() => {
   return rawTemp // 'celsius'일 때는 원본 그대로 반환
 })
 
+// 온도 구간에 따라 el-tag의 색과 문구를 함께 정한다
+const badge = computed(() => {
+  if (props.item.temp >= 28) return { type: 'danger', text: '🔥 더움 (28도 이상)' }
+  if (props.item.temp >= 25) return { type: 'warning', text: '🌤 따뜻함 (25~28도)' }
+  return { type: 'primary', text: '🌬️ 선선함 (25도 미만)' }
+})
+
 const emit = defineEmits(['select-card', 'click-detail'])
 
 // 카드를 누르면 상태바에 띄울 안내 문구를 상위로 올려보낸다
@@ -34,44 +41,41 @@ const clickDetail = () => {
 </script>
 
 <template>
-  <div class="card" @click="selectCard">
-    <div class="card-body">
-      <p class="card-title">{{ item.name }} ({{ item.status }})</p>
-      <p class="card-temp">현재 기온: {{ displayTemp }}{{ configStore.unitSymbol }}</p>
+  <el-card class="card" shadow="hover" @click="selectCard">
+    <div class="card-inner">
+      <div class="card-body">
+        <p class="card-title">{{ item.name }} ({{ item.status }})</p>
+        <p class="card-temp">현재 기온: {{ displayTemp }}{{ configStore.unitSymbol }}</p>
 
-      <span v-if="item.temp >= 28" class="badge badge-hot">🔥 더움 (28도 이상)</span>
-      <span v-else-if="item.temp >= 25" class="badge badge-warm">🌤 따뜻함 (25~28도)</span>
-      <span v-else class="badge badge-cool">🌬️ 선선함 (25도 미만)</span>
+        <el-tag :type="badge.type" effect="dark" round>{{ badge.text }}</el-tag>
+      </div>
+
+      <div class="detail-area">
+        <slot name="detail-button">
+          <el-button type="primary" plain size="small" @click.stop="clickDetail">
+            자세히
+          </el-button>
+        </slot>
+      </div>
     </div>
-
-
-    <div class="detail-area">
-      <slot name="detail-button">
-        <button class="detail-btn" @click.stop="clickDetail">자세히</button>
-      </slot>
-    </div>
-  </div>
+  </el-card>
 </template>
 
 <style scoped>
 .card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  border: 1px solid #e3e8ef;
-  border-radius: 6px;
-  padding: 10px;
   margin-bottom: 8px;
   cursor: pointer;
 }
 
-.card:hover {
-  background-color: #f6f9fd;
+.card-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .card-body p {
-  margin: 0 0 4px;
+  margin: 0 0 6px;
 }
 
 .card-title {
@@ -82,32 +86,7 @@ const clickDetail = () => {
   color: #555;
 }
 
-.badge {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  color: white;
-}
-
-.badge-hot {
-  background-color: #e8492f;
-}
-
-.badge-cool {
-  background-color: #2f7fe8;
-}
-
-.badge-warm {
-  background-color: #f9c347;
-}
-
-.detail-btn {
+.detail-area {
   flex-shrink: 0;
-  padding: 4px 10px;
-  border: 1px solid #c7d2e0;
-  border-radius: 4px;
-  background-color: white;
-  cursor: pointer;
 }
 </style>

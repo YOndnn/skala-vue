@@ -3,7 +3,7 @@ import SlotDefaultChild from './SlotDefaultChild.vue'
 </script>
 
 <template>
-  <div style="padding: 20px; max-width: 400px; margin: 0 auto">
+  <div style="padding: 20px">
     <h2>🧱 슬롯 레이아웃 주입 실습</h2>
     <hr />
 

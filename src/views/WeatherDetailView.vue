@@ -51,38 +51,46 @@ const goHome = () => {
     <h2>🔎 지역별 상세 기상관측</h2>
 
     <WeatherDashboardCard>
-      <p v-if="isLoading">불러오는 중...</p>
-      <p v-else-if="errorMessage" class="error">{{ errorMessage }}</p>
+      <el-skeleton v-if="isLoading" :rows="4" animated />
+
+      <el-alert v-else-if="errorMessage" type="error" :closable="false" show-icon>
+        {{ errorMessage }}
+      </el-alert>
 
       <template v-else-if="city">
         <h3>📍지정 지역: {{ city.name }} ({{ city.status }})</h3>
 
-        <ul class="observation">
-          <li>기온: {{ displayTemp }}{{ configStore.unitSymbol }}</li>
-          <li>습도: {{ city.humidity }}%</li>
-          <li>풍속: {{ city.wind }}m/s</li>
-          <li>강수량: {{ city.rainfall }}mm</li>
-          <li>관측 시각: {{ city.observedAt }}</li>
-          <li>도시 코드: {{ city.id }}</li>
-        </ul>
+        <!-- 라벨과 값이 짝지어진 정보라 el-descriptions가 딱 맞는다 -->
+        <el-descriptions :column="2" border>
+          <el-descriptions-item label="기온">
+            {{ displayTemp }}{{ configStore.unitSymbol }}
+          </el-descriptions-item>
+          <el-descriptions-item label="습도">{{ city.humidity }}%</el-descriptions-item>
+          <el-descriptions-item label="풍속">{{ city.wind }}m/s</el-descriptions-item>
+          <el-descriptions-item label="강수량">{{ city.rainfall }}mm</el-descriptions-item>
+          <el-descriptions-item label="관측 시각">{{ city.observedAt }}</el-descriptions-item>
+          <el-descriptions-item label="도시 코드">{{ city.id }}</el-descriptions-item>
+        </el-descriptions>
 
-        <p class="advice">
+        <el-alert class="advice" type="info" :closable="false" show-icon>
           {{ city.temp >= 28 ? '외출 시 물을 챙기세요.' : '가볍게 걸치고 나가기 좋습니다.' }}
-        </p>
+        </el-alert>
       </template>
 
-      <template v-else>
-        <p>'{{ route.params.cityId }}' 에 해당하는 도시를 찾지 못했습니다.</p>
-      </template>
+      <el-empty
+        v-else
+        :description="`'${route.params.cityId}' 에 해당하는 도시를 찾지 못했습니다.`"
+        :image-size="80"
+      />
     </WeatherDashboardCard>
 
-    <button class="back-btn" @click="goHome">← 메인 대시보드로 돌아가기</button>
+    <el-button @click="goHome">← 메인 대시보드로 돌아가기</el-button>
   </div>
 </template>
 
 <style scoped>
 .detail {
-  max-width: 720px;
+  max-width: 900px;
   font-size: 14px;
 }
 
@@ -101,8 +109,7 @@ const goHome = () => {
 }
 
 .advice {
-  margin: 0;
-  color: #2b7a4b;
+  margin-top: 12px;
 }
 
 .error {

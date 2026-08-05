@@ -58,6 +58,11 @@
   font-weight: normal;
 }
 
+/* 스크롤바 자리를 늘 비워둬서, 페이지를 옮길 때 본문이 좌우로 흔들리지 않게 한다 */
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   min-height: 100vh;
   color: var(--color-text);
@@ -67,17 +72,12 @@ body {
     background-color 0.5s;
   line-height: 1.6;
   font-family:
-    Inter,
+    'IBM Plex Sans KR',
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
+    'Apple SD Gothic Neo',
+    'Malgun Gothic',
     sans-serif;
   font-size: 15px;
   text-rendering: optimizeLegibility;
