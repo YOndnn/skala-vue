@@ -3,6 +3,7 @@
 /* 레이아웃(상단 바 + 사이드바 + 본문)은 App.vue가 직접 잡는다 */
 #app {
   font-weight: normal;
+  background-color: rgb(244, 244, 244);
 }
 
 a,
