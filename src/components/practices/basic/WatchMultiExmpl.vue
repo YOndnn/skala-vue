@@ -13,12 +13,15 @@ watch([city, dateType], ([newCity, newDate], [oldCity, oldDate]) => {
 
 <template>
   <div style="padding: 20px">
-    <h2>5. 여러 개의 변수 동시 감시 (watch)</h2><hr />
+    <h2>5. 여러 개의 변수 동시 감시 (watch)</h2>
+    <hr />
     <div class="box">
       <h3>🌍 날씨 조건 설정</h3>
       <label>도시: </label>
       <select v-model="city">
-        <option value="서울">서울</option><option value="수원">수원</option><option value="부산">부산</option>
+        <option value="서울">서울</option>
+        <option value="수원">수원</option>
+        <option value="부산">부산</option>
       </select>
       <label>날짜: </label>
       <label><input type="radio" value="오늘" v-model="dateType" /> 오늘</label> &nbsp;
@@ -26,7 +29,10 @@ watch([city, dateType], ([newCity, newDate], [oldCity, oldDate]) => {
       <label><input type="radio" value="주간예보" v-model="dateType" /> 주간예보</label>
     </div>
     <div class="box monitor">
-      <h3>👁️‍🗨️ 통합 모니터링 로그</h3><p>현재 상태: <strong>{{ apiStatus }}</strong></p>
+      <h3>👁️‍🗨️ 통합 모니터링 로그</h3>
+      <p>
+        현재 상태: <strong>{{ apiStatus }}</strong>
+      </p>
     </div>
   </div>
 </template>

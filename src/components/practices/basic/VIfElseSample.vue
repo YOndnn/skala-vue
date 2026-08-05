@@ -26,9 +26,7 @@ const score = ref(85)
       합격 등급: A 학점 (훌륭합니다!)
     </div>
     <div v-else-if="score >= 80" style="color: blue">합격 등급: B 학점 (양호합니다.)</div>
-    <div v-else-if="score >= 70" style="color: orange">
-      합격 등급: C 학점 (조금 더 분발하세요.)
-    </div>
+    <div v-else-if="score >= 70" style="color: orange">합격 등급: C 학점 (조금 더 분발하세요.)</div>
     <div v-else style="color: red; font-weight: bold">합격 등급: F 학점 (재시험 대상입니다.)</div>
   </div>
 </template>

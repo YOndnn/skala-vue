@@ -12,12 +12,12 @@ const goHome = () => {
 <template>
   <div class="not-found">
     <WeatherDashboardCard>
-    <h1>☀️ ❓</h1>
-    <h2> 페이지를 찾을 수 없습니다.</h2>
+      <h1>☀️ ❓</h1>
+      <h2>페이지를 찾을 수 없습니다.</h2>
 
       <p>요청하신 주소가 존재하지 않거나,</p>
       <p>아직 개발되지 않았습니다.</p>
-    <button class="back-btn" @click="goHome">날씨 메인으로 이동</button>
+      <button class="back-btn" @click="goHome">날씨 메인으로 이동</button>
     </WeatherDashboardCard>
   </div>
 </template>
@@ -46,5 +46,4 @@ const goHome = () => {
   font-size: 100px;
   margin: 0 0 12px;
 }
-
 </style>

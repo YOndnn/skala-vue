@@ -134,6 +134,6 @@ const goHome = () => {
   border-radius: 8px;
   padding: 12px;
   margin-bottom: 12px;
-  background-color: #e2e6e8;   /* 이 줄을 추가 */
+  background-color: #e2e6e8; /* 이 줄을 추가 */
 }
 </style>

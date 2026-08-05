@@ -33,7 +33,7 @@ const totalPrice = computed(() => (UNIT_PRICE * productQuantity.value).toLocaleS
       <span>결제 금액</span>
       <strong class="total">{{ totalPrice }}원</strong>
     </div>
-  </el-card> 
+  </el-card>
 </template>
 
 <style scoped>

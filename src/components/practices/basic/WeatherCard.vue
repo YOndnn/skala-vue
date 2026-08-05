@@ -20,10 +20,9 @@ const clickDetail = () => {
 }
 </script>
 
-/** 날씨 카드 컴포넌트
- *  - 상위 컴포넌트에서 반복문으로 풀려나온 개별 도시 데이터를 props로 주입받아 표시한다.
- *  - 카드 클릭 시 상위 컴포넌트에 안내 문구를 올려보낸다.
- *  - 자세히 버튼 클릭 시 상위 컴포넌트에 해당 도시 데이터를 올려보낸다
+/** 날씨 카드 컴포넌트 * - 상위 컴포넌트에서 반복문으로 풀려나온 개별 도시 데이터를 props로 주입받아
+표시한다. * - 카드 클릭 시 상위 컴포넌트에 안내 문구를 올려보낸다. * - 자세히 버튼 클릭 시 상위
+컴포넌트에 해당 도시 데이터를 올려보낸다
 <template>
   <div class="card" @click="selectCard">
     <div class="card-body">
@@ -34,7 +33,6 @@ const clickDetail = () => {
       <span v-else-if="item.temp >= 25" class="badge badge-warm">🌤 따뜻함 (25~28도)</span>
       <span v-else class="badge badge-cool">🌬️ 선선함 (25도 미만)</span>
     </div>
-
 
     <div class="detail-area">
       <slot name="detail-button">

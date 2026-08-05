@@ -16,7 +16,9 @@ watch(currentCity, (newValue, oldValue) => {
     <hr />
     <div class="box">
       <h3>🏙️ 지역 선택 제어판</h3>
-      <p>현재 선택된 도시: <strong>{{ currentCity }}</strong></p>
+      <p>
+        현재 선택된 도시: <strong>{{ currentCity }}</strong>
+      </p>
       <button @click="currentCity = '서울'">서울 선택</button> &nbsp;
       <button @click="currentCity = '수원'">수원 선택</button> &nbsp;
       <button @click="currentCity = '부산'">부산 선택</button>

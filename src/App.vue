@@ -15,7 +15,11 @@ const isOpen = ref(true)
   <div class="layout">
     <header class="topbar">
       <span class="brand">SKALA-vue</span>
-      <span class="subtitle">판교 8반 <br>이진호</span>
+      <span class="subtitle">
+        판교 8반
+        <br />
+        이진호
+      </span>
     </header>
 
     <!-- 접기·펼치기 한 버튼. 같은 자리에서 라벨만 바뀐다 -->
@@ -92,11 +96,6 @@ const isOpen = ref(true)
   border-bottom: 1px solid #dbe4ef;
 }
 
-.brand {
-  font-weight: bold;
-  color: #42b883;
-}
-
 /* 접기·펼치기 토글: 접든 펼치든 늘 같은 자리에 고정 */
 .toggle-btn {
   position: fixed;
@@ -149,10 +148,12 @@ const isOpen = ref(true)
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
+  background-color: white;
+  color: #333;
 }
 
 .brand {
-  font-weight: 1000;
+  font-weight: bold;
   color: #11458a;
   font-size: 24px;
 }
